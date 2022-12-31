@@ -24,3 +24,5 @@ test_folder/test9.abc
 test.db
 game_test.py
 files.db
+*.pyc
+db_phonebook.db
