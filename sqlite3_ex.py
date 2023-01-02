@@ -45,7 +45,7 @@ import sqlite3
 # with sqlite3.connect('test_db_user.db') as connection:
 #     c = connection.cursor()
 #     c.execute("INSERT INTO People VALUES(?, ?, ?)", personData)
-#     c.execute("UPDATE People SET Age = WHERE FirstName=? AND LastName=?",
+#     c.execute("UPDATE People SET Age=? WHERE FirstName=? AND LastName=?",
 #         (45, 'Luigi', 'Vercotti'))
 
 
