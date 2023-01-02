@@ -34,11 +34,15 @@ gas_car = Gasoline_Car()
 
 gas_car_tank_capacity = 17      # gallons of gas
 gas_car_mpgs = 30               # mileage in miles per gallon
+# print cost of gas car
+gas_car.print_cost('$30,000')
 # print calculated range, round to nearest integer
 print("Gas car range is {} miles.\n".format(round(gas_car.range_calculation(gas_car_tank_capacity, gas_car_mpgs))))
 
 electric_car_energy_capacity = 88   # energy capacity in kilowatt hours
 electric_car_efficiency = 37        # efficiency in kilowatt hours per 100 miles
 electric_car = Electric_Car()
+# print cost of electric car
+electric_car.print_cost('$50,000')
 # print calculated range, round to nearest integer
 print("Electric car range is {} miles.".format(round(electric_car.range_calculation(88,37))))
