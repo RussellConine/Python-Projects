@@ -3,6 +3,7 @@ from tkinter import *
 import tkinter.filedialog
 import os
 import shutil
+import datetime
 
 class ParentWindow(Frame):
     def __init__(self,master):
@@ -54,16 +55,25 @@ class ParentWindow(Frame):
         source = self.source_dir.get()
         destination = self.destination_dir.get()
         source_files = os.listdir(source)
+        # create datetime object for current time
+        current_time = datetime.datetime.now()
+        # for all files in source directory
         for i in source_files:
-            shutil.move(source + "/" + i, destination)
-            print(i + ' was transferred')
+            # create absolute filepath for each file
+            source_filepath = source + "/" + i
+            # create unix timestamp of when each file was last modified
+            last_modified_timestamp = os.path.getmtime(source_filepath)
+            # convert unix timestamp to datettime object
+            last_modified = datetime.datetime.fromtimestamp(last_modified_timestamp)
+            # if the file's last modified time is greater than (more recent than) 24 hours ago,
+            # then move the file from source to destination
+            if last_modified > current_time - datetime.timedelta(hours=24):
+                shutil.move(source_filepath, destination)
+                print(i + ' was transferred')
 
+    # close window and all widgets when program is exited
     def exit_program(self):
         root.destroy()
-
-
-            
-
 
 
 if __name__ == "__main__":
