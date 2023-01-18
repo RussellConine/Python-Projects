@@ -2,6 +2,8 @@ from django.db import models
 
 # Create your models here.
 class UniversityCampus(models.Model):
+    # create campus_name and state as fields
+    # id primary key will be created by default
     campus_name = models.CharField(max_length=60, default="", blank=True, null=False)
     state = models.CharField(max_length=2, default="", blank=True, null=False)
 
@@ -12,6 +14,6 @@ class UniversityCampus(models.Model):
         return self.campus_name
 
 
-    # removes added 's' that django adds to the model name in the browser display
+    # display "University Campus" in the browser
     class Meta:
         verbose_name_plural = "University Campus"
