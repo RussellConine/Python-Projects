@@ -30,16 +30,18 @@ def create_account(request):
 def balance(request, pk):
     account = get_object_or_404(Account, pk=pk) # retrieve the requested account using its primary key
     transactions = Transaction.Transactions.filter(account=pk)  # retrieve all of that account's transactions
-    current_total = account.initial_deposit # create account_total variable, starting with intiials deposit value
+    current_total = account.initial_deposit # create account_total variable, starting with initial deposit value
     table_contents = {} # create a dictionary into which transaction info will be placed
     for t in transactions:
         if t.type == 'Deposit':
-            current_total += t.amount # if deposit add amount to balance
+            current_total += t.amount                   # if deposit add amount to balance
+            table_contents.update({t: current_total})   # add transaction and total to the dictionary
         else:
-            current_total -= t.amount # if withdrawal subtract amount from balance
+            current_total -= t.amount                   # if withdrawal subtract amount from balance
             table_contents.update({t: current_total})   # add transaction and total to the dictionary
     # pass account, account total balance, and transaction information to the template
     content = {'account': account, 'table_contents': table_contents, 'balance': current_total}
+    print(table_contents)
     return render(request, 'checkbook/BalanceSheet.html', content)
 
 
